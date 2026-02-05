@@ -26,49 +26,47 @@
       height: 420px;
     }
 
-    h1 {
-      color: #ff4d6d;
-      margin-bottom: 10px;
-    }
-
     img {
       width: 200px;
       border-radius: 12px;
       margin: 15px 0;
     }
 
+    h1 {
+      color: #ff4d6d;
+    }
+
+    /* Buttons container */
     .buttons {
       margin-top: 20px;
       position: relative;
-      height: 140px;
-      display: flex;
-      justify-content: center;
-      gap: 30px; /* space between buttons */
+      width: 100%;
+      height: 120px;
     }
 
-    button {
-      padding: 10px 22px;
-      border-radius: 20px;
+    #yesBtn, #noBtn {
+      padding: 12px 24px;
+      border-radius: 999px;
       border: none;
       font-size: 16px;
       cursor: pointer;
-      transition: 0.2s;
+      position: absolute;
+      transition: 0.15s ease;
     }
 
     #yesBtn {
       background: #ff4d6d;
       color: white;
-      position: absolute; 
-      position: relative;
+      left: 20px;   /* fixed position */
+      top: 40px;
       z-index: 2;
     }
 
     #noBtn {
       background: #adb5bd;
       color: #333;
-      position: absolute; /* allows moving */
-      left: 180px; /* initial position away from Yes */
-      top: 10px;
+      right: 20px;  /* start away from Yes */
+      top: 40px;
     }
 
     .heart {
@@ -114,6 +112,7 @@
 
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
+      noBtn.style.right = "auto"; // disable right when moving
     }
 
     noBtn.addEventListener("mouseenter", moveNoButton);
@@ -131,12 +130,9 @@
           justify-content: center;
           text-align: center;
         ">
-          <h1 style="color:#ff4d6d; font-size: 36px;">
-            I love you pookie 💘
-          </h1>
-
+          <h1 style="color:#ff4d6d;">I love you pookie 💘</h1>
           <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcm1udzVmaWE0OGlkNmczNW1ubzBxYmZyaHlreXJldGt2ZWQ5bGJjaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MpeWJ9JyTyOm4/giphy.gif"
-               style="width: 260px; border-radius: 16px;" />
+               style="width:260px;border-radius:16px;" />
         </div>
       `;
       createHearts();
