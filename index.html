@@ -40,11 +40,14 @@
     .buttons {
       margin-top: 20px;
       position: relative;
-      height: 120px;
+      height: 140px;
+      display: flex;
+      justify-content: center;
+      gap: 30px; /* space between buttons */
     }
 
     button {
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 20px;
       border: none;
       font-size: 16px;
@@ -55,14 +58,16 @@
     #yesBtn {
       background: #ff4d6d;
       color: white;
+      position: relative;
+      z-index: 2;
     }
 
     #noBtn {
       background: #adb5bd;
       color: #333;
-      position: absolute;
-      left: 180px;
-      top: 0;
+      position: absolute; /* allows moving */
+      left: 180px; /* initial position away from Yes */
+      top: 10px;
     }
 
     .heart {
@@ -80,7 +85,7 @@
   </style>
 </head>
 <body>
-  <div class="card" id="card">
+  <div class="card">
     <h1>Will you be my Valentine? 💖</h1>
 
     <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2ZtbGJqdnYxanZ1bDhzYzQ4a29ydjJ4b3N0Y2t3bm1uNGx5eW5tZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oriO0OEd9QIDdllqo/giphy.gif" />
@@ -125,12 +130,12 @@
           justify-content: center;
           text-align: center;
         ">
-          <h1 style="color:#ff4d6d; font-size: 36px; margin-bottom: 10px;">
+          <h1 style="color:#ff4d6d; font-size: 36px;">
             I love you pookie 💘
           </h1>
 
           <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcm1udzVmaWE0OGlkNmczNW1ubzBxYmZyaHlreXJldGt2ZWQ5bGJjaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MpeWJ9JyTyOm4/giphy.gif"
-               style="width: 260px; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);" />
+               style="width: 260px; border-radius: 16px;" />
         </div>
       `;
       createHearts();
@@ -144,7 +149,6 @@
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.animationDuration = 2 + Math.random() * 3 + "s";
         document.body.appendChild(heart);
-
         setTimeout(() => heart.remove(), 5000);
       }, 300);
     }
