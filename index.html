@@ -22,6 +22,8 @@
       text-align: center;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       position: relative;
+      width: 320px;
+      height: 420px;
     }
 
     h1 {
@@ -38,7 +40,7 @@
     .buttons {
       margin-top: 20px;
       position: relative;
-      height: 60px;
+      height: 120px;
     }
 
     button {
@@ -53,18 +55,19 @@
     #yesBtn {
       background: #ff4d6d;
       color: white;
-      margin-right: 20px;
     }
 
     #noBtn {
       background: #adb5bd;
       color: #333;
       position: absolute;
+      left: 180px;
+      top: 0;
     }
 
     .love-message {
       display: none;
-      font-size: 28px;
+      font-size: 26px;
       color: #ff4d6d;
       margin-top: 20px;
       font-weight: bold;
@@ -94,10 +97,9 @@
   <div class="card" id="card">
     <h1>Will you be my Valentine? 💖</h1>
 
-    <!-- You can replace this GIF link with any cute GIF you like -->
-    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2ZtbGJqdnYxanZ1bDhzYzQ4a29ydjJ4b3N0Y2t3bm1uNGx5eW5tZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oriO0OEd9QIDdllqo/giphy.gif" alt="cute gif" />
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2ZtbGJqdnYxanZ1bDhzYzQ4a29ydjJ4b3N0Y2t3bm1uNGx5eW5tZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oriO0OEd9QIDdllqo/giphy.gif" />
 
-    <div class="buttons">
+    <div class="buttons" id="btnArea">
       <button id="yesBtn">Yes 😍</button>
       <button id="noBtn">No 😒</button>
     </div>
@@ -109,19 +111,26 @@
 
   <script>
     const noBtn = document.getElementById("noBtn");
+    const btnArea = document.getElementById("btnArea");
     const yesBtn = document.getElementById("yesBtn");
     const loveMsg = document.getElementById("loveMsg");
 
-    noBtn.addEventListener("mouseenter", moveNoButton);
-    noBtn.addEventListener("click", moveNoButton);
-
     function moveNoButton() {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 100);
+      const areaRect = btnArea.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = areaRect.width - btnRect.width;
+      const maxY = areaRect.height - btnRect.height;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
 
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     }
+
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
       loveMsg.style.display = "block";
@@ -131,17 +140,13 @@
     function createHearts() {
       setInterval(() => {
         const heart = document.createElement("div");
-        heart.classList.add("heart");
+        heart.className = "heart";
         heart.innerHTML = "❤️";
-
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.animationDuration = 2 + Math.random() * 3 + "s";
-
         document.body.appendChild(heart);
 
-        setTimeout(() => {
-          heart.remove();
-        }, 5000);
+        setTimeout(() => heart.remove(), 5000);
       }, 300);
     }
   </script>
